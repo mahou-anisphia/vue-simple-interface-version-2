@@ -18,18 +18,18 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data: () => ({
-    items: [
-      { text: "COS20007 Hurdle Test Resit" },
-      { text: "COS10025 DFD Diagram Presentation" },
-      { text: "COS10009 Introduction To Programming" },
-    ],
+    items: [],
   }),
   methods: {
     click(value) {
       console.log(value.text);
     },
+  },
+  async created() {
+    this.items = (await axios.get("http://localhost:3000/items")).data;
   },
 };
 </script>
