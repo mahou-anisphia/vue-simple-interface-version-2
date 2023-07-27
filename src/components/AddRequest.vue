@@ -21,7 +21,7 @@
                 :rules="completionMethodRule"
                 :counter="30"
                 type="text"
-                label="Completion Method (ie: Ruby Code / Business Case Report)"
+                label="Completion Method (ie: Ruby Code)"
                 required
               ></v-text-field>
             </v-col>
@@ -37,7 +37,7 @@
           <v-row>
             <v-col>
               <v-text-field
-                v-model="reuqestDetail"
+                v-model="details"
                 :rules="reqDetailRule"
                 :counter="150"
                 type="text"
@@ -52,7 +52,7 @@
           :rules="[(v) => !!v || 'You must agree to our terms to continue']"
           label="Agree to our Terms and Conditions: We will send you an e-mail soon to announce you about the pricing and
               payment of your request. EHC is a pay-as-you-go service so your request
-              will be rated and the price will be decided by our team."
+              will be rated and the price will be decided by our team, based on your task's requirements."
           required
         ></v-checkbox>
         <v-btn class="me-4" @click="handleSubmit"> submit </v-btn>
@@ -62,12 +62,13 @@
   </v-card>
 </template>
 <script>
+import axios from "axios";
 export default {
   data: () => ({
     valid: false,
     unitCode: "",
     completionMethod: "",
-    reuqestDetail: "",
+    details: "",
     unitCodeRules: [
       (value) => {
         if (value) return true;
@@ -125,7 +126,18 @@ export default {
     },
     async handleSubmit() {
       const { valid } = await this.$refs.form.validate();
-      if (valid) alert("Form is valid");
+      if (valid) {
+        const objToSend = {
+          unitCode: this.unitCode,
+          completionMethod: this.completionMethod,
+          email: this.email,
+          details: this.details,
+        };
+        const currentHost = window.location.hostname;
+        axios.post(`http://${currentHost}:3000/items`, objToSend).data;
+        this.$refs.form.reset();
+        location.reload();
+      }
     },
   },
 };

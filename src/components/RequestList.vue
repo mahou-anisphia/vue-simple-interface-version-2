@@ -2,7 +2,7 @@
   <div>
     <v-card class="mx-auto">
       <v-container>
-        <v-toolbar dark>
+        <v-toolbar>
           <v-toolbar-title>Your EHC Requests</v-toolbar-title>
         </v-toolbar>
         <v-list density="compact">
@@ -14,7 +14,8 @@
             color="primary"
             @click="click(items[i])"
           >
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="item.unitCode"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.details"></v-list-item-subtitle>
           </v-list-item>
         </v-list>
       </v-container>
@@ -23,6 +24,7 @@
 </template>
 <script>
 import axios from "axios";
+
 export default {
   data: () => ({
     items: [],
@@ -33,7 +35,8 @@ export default {
     },
   },
   async created() {
-    this.items = (await axios.get("http://localhost:3000/items")).data;
+    const currentHost = window.location.hostname;
+    this.items = (await axios.get(`http://${currentHost}:3000/items`)).data;
   },
 };
 </script>
