@@ -3,7 +3,7 @@
     <h4 class="text-h4">Your EHC Requests</h4>
     <v-card class="mx-auto" max-width="1000">
       <v-list density="compact">
-        <v-list-subheader>REPORTS</v-list-subheader>
+        <v-list-subheader>Ongoing Requests</v-list-subheader>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
