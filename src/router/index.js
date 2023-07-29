@@ -16,6 +16,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AddRequestView.vue"),
   },
+  {
+    path: "/singlerequest",
+    name: "singleRequest",
+    component: () => import("../views/SingleRequestView.vue"),
+  },
 ];
 
 const router = createRouter({
