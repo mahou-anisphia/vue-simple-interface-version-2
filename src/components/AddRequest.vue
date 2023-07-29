@@ -62,7 +62,6 @@
   </v-card>
 </template>
 <script>
-import axios from "axios";
 export default {
   data: () => ({
     valid: false,
@@ -133,10 +132,8 @@ export default {
           email: this.email,
           details: this.details,
         };
-        const currentHost = window.location.hostname;
-        axios.post(`http://${currentHost}:3000/items`, objToSend).data;
-        this.$refs.form.reset();
-        location.reload();
+        this.$store.dispatch("addItem", objToSend);
+        //this.$refs.form.reset();
       }
     },
   },

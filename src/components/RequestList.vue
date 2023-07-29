@@ -8,7 +8,7 @@
         <v-list density="compact">
           <v-list-subheader>Ongoing Requests</v-list-subheader>
           <v-list-item
-            v-for="(item, i) in items"
+            v-for="(item, i) in $store.state.items"
             :key="i"
             :value="item"
             color="primary"
@@ -23,20 +23,14 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-
 export default {
-  data: () => ({
-    items: [],
-  }),
   methods: {
     click(value) {
       console.log(value.text);
     },
   },
   async created() {
-    const currentHost = window.location.hostname;
-    this.items = (await axios.get(`http://${currentHost}:3000/items`)).data;
+    this.$store.dispatch("getItems");
   },
 };
 </script>
