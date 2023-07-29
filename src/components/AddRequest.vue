@@ -30,6 +30,7 @@
                 v-model="email"
                 :rules="emailRules"
                 label="E-mail"
+                type="email"
                 required
               ></v-text-field>
             </v-col>
