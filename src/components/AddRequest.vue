@@ -133,6 +133,7 @@ export default {
           details: this.details,
         };
         this.$store.dispatch("addItem", objToSend);
+        //comment this line to debug, uncomment in final release
         //this.$refs.form.reset();
       }
     },

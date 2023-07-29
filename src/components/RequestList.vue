@@ -12,7 +12,7 @@
             :key="i"
             :value="item"
             color="primary"
-            @click="click(items[i])"
+            @click="click($store.state.items[i])"
           >
             <v-list-item-title v-text="item.unitCode"></v-list-item-title>
             <v-list-item-subtitle v-text="item.details"></v-list-item-subtitle>
