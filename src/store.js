@@ -32,5 +32,8 @@ export const store = createStore({
       );
       return response.data;
     },
+    async register({ commit }, regData) {
+      axios.post(`http://${currentHost}:3000/registers`, regData);
+    },
   },
 });

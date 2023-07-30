@@ -17,9 +17,14 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/AddRequestView.vue"),
   },
   {
-    path: "/singlerequest",
+    path: "/singlerequest/:id",
     name: "singleRequest",
     component: () => import("../views/SingleRequestView.vue"),
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../views/RegisterView.vue"),
   },
 ];
 

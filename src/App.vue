@@ -7,6 +7,7 @@
       <v-btn flat to="/">Requests</v-btn>
       <v-btn flat to="/addrequest">Add Requests</v-btn>
       <v-spacer></v-spacer>
+      <v-btn flat to="/register">Register</v-btn>
       <v-btn flat>Login</v-btn>
     </v-toolbar>
     <v-container>

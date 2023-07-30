@@ -12,7 +12,7 @@
             :key="i"
             :value="item"
             color="primary"
-            @click="click($store.state.items[i])"
+            :to="'singlerequest/' + i"
           >
             <v-list-item-title v-text="item.unitCode"></v-list-item-title>
             <v-list-item-subtitle v-text="item.details"></v-list-item-subtitle>
@@ -24,11 +24,7 @@
 </template>
 <script>
 export default {
-  methods: {
-    click(value) {
-      console.log(value.text);
-    },
-  },
+  methods: {},
   async created() {
     this.$store.dispatch("getItems");
   },
