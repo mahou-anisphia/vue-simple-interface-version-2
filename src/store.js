@@ -33,7 +33,17 @@ export const store = createStore({
       return response.data;
     },
     async register({ commit }, regData) {
-      axios.post(`http://${currentHost}:3000/registers`, regData);
+      try {
+        let token = (
+          await axios.post(`http://${currentHost}:3000/registers`, regData)
+        ).data;
+        localStorage.setItem("token", token);
+        axios.defaults.headers.common["Authorization"] = token;
+        return "registered";
+      } catch (error) {
+        console.log(error.toJSON());
+        return error.code;
+      }
     },
   },
 });
