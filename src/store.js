@@ -5,7 +5,7 @@ const currentHost = window.location.hostname;
 export const store = createStore({
   state: {
     items: [],
-    item: {},
+    token: localStorage.getItem("token") || "",
   },
   mutations: {
     updateItem(state, items) {
@@ -13,6 +13,13 @@ export const store = createStore({
     },
     newItem(state, item) {
       state.items.push(item);
+    },
+    auth(state, token) {
+      state.token = token;
+    },
+    logout(state) {
+      state.token = "";
+      localStorage.clear("token");
     },
   },
   actions: {
@@ -39,6 +46,7 @@ export const store = createStore({
         ).data;
         localStorage.setItem("token", token);
         axios.defaults.headers.common["Authorization"] = token;
+        commit("auth", token);
         return "registered";
       } catch (error) {
         console.log(error.toJSON());
