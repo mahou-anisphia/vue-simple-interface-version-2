@@ -53,5 +53,19 @@ export const store = createStore({
         return error.code;
       }
     },
+    async login({ commit }, regData) {
+      try {
+        let token = (
+          await axios.post(`http://${currentHost}:3000/login`, regData)
+        ).data;
+        localStorage.setItem("token", token);
+        axios.defaults.headers.common["Authorization"] = token;
+        commit("auth", token);
+        return "Logged In";
+      } catch (error) {
+        console.log(error.toJSON());
+        return error.response.data.error;
+      }
+    },
   },
 });

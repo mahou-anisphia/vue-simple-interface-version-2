@@ -80,16 +80,10 @@ export default {
           username: trimmedUsername,
           password: trimmedPassword,
         };
-        this.registerResult = await this.$store.dispatch("register", objToSend);
-        if (this.registerResult === "ERR_BAD_REQUEST") {
+        this.registerResult = await this.$store.dispatch("login", objToSend);
+        if (this.registerResult) {
           this.snackbar = true;
-          this.showRegResult = "Username Already Exist";
-        } else if (this.registerResult != "registered") {
-          this.snackbar = true;
-          this.showRegResult = `An error occured: ${this.registerResult}`;
-        } else {
-          this.snackbar = true;
-          this.showRegResult = "Registered Successfully";
+          this.showRegResult = this.registerResult;
         }
         this.$refs.form.reset();
       }
