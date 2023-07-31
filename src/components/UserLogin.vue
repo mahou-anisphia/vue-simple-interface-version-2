@@ -35,6 +35,8 @@
             </v-row>
           </v-container>
         </v-form>
+        <p>Don't have an account?</p>
+        <v-btn to="/register">Sign Up!</v-btn>
       </v-container>
     </v-card>
     <v-snackbar v-model="snackbar" :timeout="timeout" v-cloak>
@@ -98,8 +100,11 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 [v-cloak] {
   display: none;
+}
+p {
+  margin: 4px;
 }
 </style>

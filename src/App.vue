@@ -8,7 +8,6 @@
       <v-btn flat to="/addrequest">Add Requests</v-btn>
       <v-spacer></v-spacer>
       <div v-if="!$store.state.token">
-        <v-btn flat to="/register">Register</v-btn>
         <v-btn flat to="/login">Login</v-btn>
       </div>
       <v-btn flat v-if="$store.state.token" @click="$store.commit('logout')"
