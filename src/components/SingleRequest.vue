@@ -17,7 +17,9 @@
       <v-expand-transition>
         <v-card v-if="reveal" class="v-card--reveal" style="height: 100%">
           <v-card-text class="pb-0">
-            <p class="text-h4 text--primary">Customer's E-mail</p>
+            <p class="text-h4 text--primary" v-cloak>
+              Customer {{ temp.user }}'s E-mail
+            </p>
             <p v-cloak>
               <a href="mailto:{{ temp.email }}">{{ temp.email }}</a>
             </p>

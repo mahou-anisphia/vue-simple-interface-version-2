@@ -9,12 +9,17 @@ const routes = [
   },
   {
     path: "/addrequest",
-    name: "addrequest",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AddRequestView.vue"),
+    component: () => import("../views/AddRequestView.vue"),
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("token")) {
+        // User is not logged in, show the alert and redirect to the login page
+        alert("You must login to post.");
+        next("/login");
+      } else {
+        // User is logged in, proceed to the Add Requests page
+        next();
+      }
+    },
   },
   {
     path: "/singlerequest/:id",

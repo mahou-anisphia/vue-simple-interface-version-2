@@ -90,6 +90,10 @@ export default {
         } else {
           this.snackbar = true;
           this.showRegResult = "Registered Successfully";
+          if (this.$store.state.token) {
+            // Redirect to the main page if logged in
+            this.$router.push({ name: "request" });
+          }
         }
         this.$refs.form.reset();
       }

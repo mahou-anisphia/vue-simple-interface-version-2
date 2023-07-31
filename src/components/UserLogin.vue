@@ -84,6 +84,10 @@ export default {
         if (this.registerResult) {
           this.snackbar = true;
           this.showRegResult = this.registerResult;
+          if (this.$store.state.token) {
+            // Redirect to the main page if logged in
+            this.$router.push({ name: "request" });
+          }
         }
         this.$refs.form.reset();
       }
